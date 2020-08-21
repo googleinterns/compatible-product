@@ -1,0 +1,43 @@
+syntax = "proto2";
+
+// [START messages]
+
+message SegmentationMask {
+    optional int64 mask_width = 1;
+    optional int64 mask_height = 2;
+    optional bytes mask_data = 3;
+}
+
+message NormalizedBoundingBox {
+    optional float x1 = 1;
+    optional float y1 = 2;
+    optional float x2 = 3;
+    optional float y2 = 4;
+}
+
+// Product with its bounding box, segmentation mask, embeddings
+message Product {
+    optional NormalizedBoundingBox normalized_bouonding_box = 1;
+    optional SegmentationMask segmentation_mask = 2;
+    optional bytes embedding_v1 = 3; // 64-d
+    optional bytes embedding_v2 = 4; // 64-d
+    repeated string product_type = 5;
+    optional int64 product_type_id = 6;
+    optional int64 product_id = 7;
+}
+
+message Image {
+    optional int64 image_width = 1;
+    optional int64 image_height = 2;
+    optional string image_file_path = 3;
+    optional bytes image_data = 4;
+    repeated Product products = 5; // There can be one product per (product) image or multiple ones per (stage/outfit) image.
+    optional int64 outfit_id = 6;
+}
+
+// List of images
+message Images {
+    repeated Image images = 1;
+}
+
+// [END messages]
