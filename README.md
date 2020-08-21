@@ -1,12 +1,12 @@
 # Complete the Look
 
-This project aims to build a demo that can recommend complementary clothes for an apparel item in terms of style and functionality compatibilities.
+This project aims to build a model that can recommend complementary clothes for an apparel item in terms of style and functionality compatibilities.
 
-To this end, we built an embedding module that can embed product images into a compatibility embedding space and later we can use this embedding space to retrieve compatible products with k-nearest neighbors.
+To this end, we build an embedding module that can embed product images into a compatibility embedding space and later we can use this embedding space to retrieve compatible products with k-nearest neighbors.
 
 ![Overview](img/overview.png)
 
-Our embedding module projects product initial embeddings into serveral subspaces and integrate these subspaces with attention weights learned from an attention weights module. The final integrated embeddings are used for retrieval purposes.
+Our embedding module projects product initial embeddings into serveral subspaces and integrates these subspaces with attention weights learned from an attention weights module. The final integrated embeddings are used for retrieval purposes.
 
 ![Pipeline](img/pipeline.png)
 
@@ -23,13 +23,13 @@ Our embedding module is trained use the [Polyvore Outfit Dataset](https://github
 --batch_mining: Whether to use average triplet loss ('normal') or semihard triplet loss ('semihard') etc.
 ```
 
-You can see a full list and descriptions of model options by:
+You can see a full list and descriptions of the model options by:
 
 ``` shell
 python main.py --help
 ```
 
-For example, the following command will train a model with 5 subspaces using initial product color and pattern embeddings as input. The attention weights will be set to average weights. Triplet loss will be calculated using semihard negatives.
+For example, the following command will train a model with 5 subspaces using initial product color and pattern embeddings as inputs. The attention weights will be set to average weights. Triplet loss will be calculated using semihard negatives.
 
 
 ``` shell
@@ -40,7 +40,7 @@ python main.py --batch-size 128 --l2_embed --embed_input --margin 0.1 --n_masks 
 
 ## Testing
 
-To test an embedding module for the compatibility prediction task and fill-in-the-blank task proposed by [Vasileva et al. 2018](https://github.com/mvasil/fashion-compatibility), `--test` argument need to be included. For example, to test a model trained with average attention weights and 5 subspaces, you can use:
+To test an embedding module for the compatibility prediction task and the fill-in-the-blank task proposed by [Vasileva et al. 2018](https://github.com/mvasil/fashion-compatibility), `--test` argument needs to be included. For example, to test a model trained with average attention weights and 5 subspaces, you can use:
 
 ``` shell
 python main.py --test --exp_id {Experiment_ID} --l2_embed --embed_input --n_masks 5 --cond_input none
@@ -50,7 +50,7 @@ python main.py --test --exp_id {Experiment_ID} --l2_embed --embed_input --n_mask
 
 ## Results visualization
 
-We visualized our retrieval results in the provided .ipynb file. You can find more visualizations on this [html file](complete_the_look_upated_demo.html).
+We visualize the compatible product retrieval results using our model in the provided .ipynb file. You can find more visualizations on this [html file](complete_the_look_upated_demo.html).
 
 ![Visualization](img/retrieval_results.png)
 
