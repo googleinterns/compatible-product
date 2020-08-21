@@ -336,38 +336,6 @@ def valid_step_triplet_input(model,valid_batches,optimizer,margin,summary_writer
         tf.summary.scalar('valid_fraction', valid_fraction.result(), step=base_iters)
         tf.summary.scalar('valid_dist', valid_dist.result(), step=base_iters)
             
-# def valid_step(model,valid_batches,optimizer,margin,summary_writer):
-#     global base_iters
-#     valid_loss = tf.keras.metrics.Mean('valid_loss', dtype=tf.float32)
-#     valid_fraction = tf.keras.metrics.Mean('valid_fraction', dtype=tf.float32)
-#     valid_dist = tf.keras.metrics.Mean('valid_dist', dtype=tf.float32)
-#     valid_disthp = tf.keras.metrics.Mean('valid_disthp', dtype=tf.float32)
-#     valid_disthn = tf.keras.metrics.Mean('valid_disthn', dtype=tf.float32)
-#     valid_batches.shuffle(1000)
-#     for image_batch, item_id_batch, set_id_batch, cate_id_batch in valid_batches.take(30):
-#         pos_fraction = None
-#         mean_dist = None
-#         embeddings = model(image_batch)
-# #         loss,dist_hp,dist_hn = batch_hard_triplet_loss(cate_id_batch, embeddings, margin, squared=False)
-# #         loss,pos_fraction,mean_dist = batch_all_triplet_loss(set_id_batch, embeddings, margin, squared=False)
-#         if args.tfa_triplet_loss:
-#             loss = tfa.losses.triplet_semihard_loss(set_id_batch,embeddings,margin=margin,distance_metric='L2')
-#         else:
-#             loss,pos_fraction,mean_dist,masks = batch_all_triplet_loss(set_id_batch, cate_id_batch, embeddings, margin, squared=False)
-#         valid_loss(loss)
-#         if not pos_fraction == None:
-#             valid_fraction(pos_fraction)
-#         if not mean_dist == None:
-#             valid_dist(mean_dist)
-# #         valid_disthp(dist_hp)
-# #         valid_disthn(dist_hn)
-
-#     with summary_writer.as_default():
-#         tf.summary.scalar('valid_loss', valid_loss.result(), step=base_iters)
-#         tf.summary.scalar('valid_fraction', valid_fraction.result(), step=base_iters)
-#         tf.summary.scalar('valid_dist', valid_dist.result(), step=base_iters)
-#         tf.summary.scalar('valid_disthp', valid_disthp.result(), step=base_iters)
-#         tf.summary.scalar('valid_disthn', valid_disthn.result(), step=base_iters)
             
 def train(args):
     """ Train embedding model with parameters specified from arguments
